@@ -161,13 +161,13 @@ df_titanic %>% summarize(total = sum(n))
 
 - Write your observations here
 - Are there any differences?
-  - Yes. The Wikipedia said there was 2,435 people on board while the
+  - Yes. The Wikipedia said there was 2,224 people on board while the
     total number in the Titanic dataset was 2,201.
 - If yes, what might account for those differences?
   - The difference in number could be the lack of information about the
-    other 200+ members on the ship as the information about them could
-    be lost over time. The dataset could also exclude the people who
-    were never found so we wouldn’t know if they had survived or not.
+    other 23 members on the ship as the information about them could be
+    lost over time. The data set could also exclude the people who were
+    never found so we wouldn’t know if they had survived or not.
 
 ### **q3** Create a plot showing the count of persons who *did* survive, along with aesthetics for `Class` and `Sex`. Document your observations below.
 
