@@ -26,7 +26,7 @@ Unlike exercises, **challenges will be graded**. The following rubrics define ho
 <!-- ------------------------- -->
 
 | Category    | Needs Improvement                                                                                                | Satisfactory                                                                                                               |
-|------------------|-----------------------------|-------------------------|
+|-------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Effort      | Some task **q**'s left unattempted                                                                               | All task **q**'s attempted                                                                                                 |
 | Observed    | Did not document observations, or observations incorrect                                                         | Documented correct observations based on analysis                                                                          |
 | Supported   | Some observations not clearly supported by analysis                                                              | All observations clearly supported by analysis (table, graph, etc.)                                                        |
@@ -76,9 +76,9 @@ df_titanic %>% summarize(total = sum(n))
 
 -   Write your observations here
 -   Are there any differences?
-    -   Yes. The Wikipedia said there was 2,435 people on board while the total number in the Titanic dataset was 2,201.
+    -   Yes. The Wikipedia said there was 2,224 people on board while the total number in the Titanic dataset was 2,201.
 -   If yes, what might account for those differences?
-    -   The difference in number could be the lack of information about the other 200+ members on the ship as the information about them could be lost over time. The dataset could also exclude the people who were never found so we wouldn't know if they had survived or not.
+    -   The difference in number could be the lack of information about the other 23 members on the ship as the information about them could be lost over time. The data set could also exclude the people who were never found so we wouldn't know if they had survived or not.
 
 ### **q3** Create a plot showing the count of persons who *did* survive, along with aesthetics for `Class` and `Sex`. Document your observations below.
 
