@@ -258,16 +258,48 @@ df_q2
     ##    <dbl>  <dbl> <dbl> <dbl> <dbl>   <dbl>
     ## 1   0.31  0.331  9900 10700  268. 0.00674
 
+``` r
+df_stang_long %>% distinct(alloy)
+```
+
+    ## # A tibble: 1 × 1
+    ##   alloy  
+    ##   <chr>  
+    ## 1 al_24st
+
+``` r
+df_stang_long %>% distinct(thick)
+```
+
+    ## # A tibble: 4 × 1
+    ##   thick
+    ##   <dbl>
+    ## 1 0.022
+    ## 2 0.032
+    ## 3 0.064
+    ## 4 0.081
+
+``` r
+df_stang_long %>% distinct(angle)
+```
+
+    ## # A tibble: 3 × 1
+    ##   angle
+    ##   <int>
+    ## 1     0
+    ## 2    45
+    ## 3    90
+
 **Observations**:
 
 - Is there “one true value” for the material properties of Aluminum?
   - No, not for all aluminum because material properties vary with type
     of alloy, thickness and angle.
 - How many aluminum alloys are in this dataset? How do you know?
-  - One alloy because all the aluminum alloys are listed as al_24st
-    under the “alloy” column.
+  - One alloy because there is one aluminum alloy - al_24st - if you
+    call distinct(alloy). Looking at the dataset as well confirms this.
 - What angles were tested?
-  - 0, 45, and 90 degrees were tested.
+  - 0, 45, and 90 degree angles were tested.
 - What thicknesses were tested?
   - 0.022, 0.032, 0.064, 0.081
 - My question:
@@ -326,6 +358,14 @@ ggplot(df_stang_long_81) +
 
 ![](c03-stang-assignment_files/figure-gfm/q3-task-4.png)<!-- -->
 
+``` r
+ggplot(df_stang_long) +
+  geom_count(mapping = aes(x = angle , y = nu)) + 
+  facet_grid(as.character(thick)~.)
+```
+
+![](c03-stang-assignment_files/figure-gfm/q3-task-5.png)<!-- -->
+
 **Observations**:
 
 - Given a constant thickness, there seems to be no notable trend that we
@@ -362,14 +402,14 @@ df_stang_long %>%
 
 - Does this graph support or contradict the claim above?
   - This graph does not support the claim that E is an intensive
-    property of the material. According to the graph, you can see that
-    for each thickness of aluminum, data tends to cluster around a
-    different Elastic modulus, notably for the 0.081 thickness, where
-    the data clusters around the 10000 E value as compared to the other
-    measurements clustering generally around the 10500 E value. Because
-    E is supposed to be an intensive property of an Aluminum alloy, I
-    wonder if this trend is due to a different alloy being used in
-    mistake for the 0.081 thickness, or some error in measurements.
+    property of the material. The evidence is inconclusive. According to
+    the graph, you can see that for certain thicknesses of aluminum,
+    data tends to cluster around a similar Elastic Modulus of 10,000E
+    (0.022, 0.032, 0.064 thicknesses) while for the 0.081 thickness, the
+    data clusters around the 10,000 E value. Because E is supposed to be
+    an intensive property of an Aluminum alloy, I wonder if this
+    inconsistent trend is due to a different alloy being used in mistake
+    for the 0.081 thickness, or some error in measurements.
 
 # References
 
