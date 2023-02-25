@@ -291,6 +291,14 @@ print(Error)
 
     ## [1] -151.542
 
+``` r
+ratio <- abs(Error/LIGHTSPEED_PM)
+
+print(ratio)
+```
+
+    ## [1] 2.971412
+
 **Observations**: - Is Michelson’s estimate of the error (his
 uncertainty) greater or less than the true error? -
 
@@ -301,6 +309,8 @@ error. -
 
 Michelson’s uncertainty is plus or minus around 51 while the true error
 is around -151.5. His true error falls outside of his uncertainty.
+Quantitatively, the true error is around 3 times the value of his
+uncertainty.
 
 The following plot shows all of Michelson’s data as a [control
 chart](https://en.wikipedia.org/wiki/Control_chart); this sort of plot
@@ -415,18 +425,18 @@ ggplot(df_q2)+
 
 **Observations**:
 
-- There could be a slightly positive correlation between Temp and
-  Velocity Vacuum in Michaelson’s dataset. This could explain the
-  difference between Michaelson’s estimate and Velocity Vacuum because
-  the temperature variable of the test setup could have altered the
-  Velocity of the light particles measured.
-- Additionally, from the second graph it seems like Distinctness does
-  have an effect on the velocity vacuum measurement because the box
-  charts have varied spreads between the 1-3 levels of Distinctness.
-  From looking at the distributions, It seems like the higher level of
-  Distinctness, the higher the velocity. Michaelson’s estimate could
-  have a different proportion of certain Distinctness measurements that
-  may have skewed his data.
+- There may or may not be a correlation between Temp and Velocity Vacuum
+  in Michaelson’s dataset. If there was a correlation, this could
+  explain the difference between Michaelson’s estimate and Velocity
+  Vacuum because the temperature variable of the test setup could have
+  altered the Velocity of the light particles measured. However, the
+  graph is inconclusive as the data points don’t seem to follow a clear
+  trend.
+- From the second graph it seems like we cannot conclude wheter
+  Distinctness has an effect on the velocity vacuum measurement either.
+  Looking at the box charts, there seems to be a weak positive trend
+  happening between Distinctness and Velocity Vacuum, but there is too
+  much overlap between the boxplots to draw a conclusion.
 
 ## Bibliography
 
