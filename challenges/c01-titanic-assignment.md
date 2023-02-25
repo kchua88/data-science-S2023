@@ -142,7 +142,7 @@ glimpse(df_titanic)
 
 **Observations**:
 
-- Variables in the data set are Class, Crew, Sex, Age, Survived, and n.
+- Variables in the data set are Class, Sex, Age, Survived, and n.
 
 ### **q2** Skim the [Wikipedia article](https://en.wikipedia.org/wiki/RMS_Titanic) on the RMS Titanic, and look for a total count of souls aboard. Compare against the total computed below. Are there any differences? Are those differences large or small? What might account for those differences?
 
