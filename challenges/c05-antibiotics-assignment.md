@@ -209,6 +209,7 @@ df_antibiotics %>%
   ggplot() +
   geom_col(mapping = aes(x = bacteria, y = MIC, fill = gram), position = "dodge") +
   facet_wrap( ~ drug) +
+  #sscale_y_log10() + 
   ylim(0, 0.15) + 
   geom_hline(yintercept=0.1, linetype="dashed", 
               color = "red", size=0.2) + 
@@ -243,7 +244,11 @@ df_antibiotics %>%
                     values_to='MIC')  %>%
   ggplot() +
     geom_col(mapping = aes(x = drug, y = MIC, fill = gram)) +
+    scale_y_log10() + 
+    #coord_trans(x = "log", y = "log") + 
     facet_wrap(~ bacteria) + 
+    geom_hline(yintercept= 0.1, linetype="dashed", 
+              color = "red", size=0.2) + 
     theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) 
 ```
 
@@ -272,7 +277,7 @@ df_antibiotics %>%
               color = "red", size=0.2) + 
   geom_col(mapping = aes(x = bacteria, y = MIC)) + 
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle('streptomycin Bacteria vs. MIC')
+  ggtitle('Streptomycin Bacteria vs. MIC')
 ```
 
     ## Warning: Removed 12 rows containing missing values (`position_stack()`).
@@ -287,10 +292,6 @@ bacteria*.
 
 Note that your visual must be *qualitatively different* from *all* of
 your other visuals.
-
-``` r
-# 
-```
 
 ``` r
 df_antibiotics %>%
@@ -327,18 +328,15 @@ df_antibiotics %>%
                     names_to='drug',
                     values_to='MIC')  %>%
   group_by(bacteria)  %>%
-  mutate(min_MIC = min(MIC))  %>%
+  summarise(min_MIC = min(MIC))  %>%
   ggplot(mapping = aes(x = bacteria, y = min_MIC)) +
   geom_point() + 
   geom_hline(yintercept=0.1, linetype="dashed", 
               color = "red", size=0.2) + 
-  geom_label_repel(mapping = aes(x = bacteria, y = min_MIC, label = drug)) +
+  #geom_label_repel(mapping = aes(x = bacteria, y = min_MIC, label = drug)) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle('Best Drug per Bacteria')
+  ggtitle('Minimum MIC per Bacteria')
 ```
-
-    ## Warning: ggrepel: 33 unlabeled data points (too many overlaps). Consider
-    ## increasing max.overlaps
 
 ![](c05-antibiotics-assignment_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
@@ -357,18 +355,14 @@ df_antibiotics %>%
                     names_to='drug',
                     values_to='MIC')  %>%
   group_by(bacteria)  %>%
-  mutate(avg_MIC = mean(MIC))  %>%
+  summarise(avg_MIC = mean(MIC))  %>%
   ggplot(mapping = aes(x = bacteria, y = avg_MIC)) +
   geom_point() + 
   geom_hline(yintercept=0.1, linetype="dashed", 
               color = "red", size=0.2) + 
-  geom_label_repel(mapping = aes(x = bacteria, y = avg_MIC, label = drug)) +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  ggtitle('Best Drug per Bacteria')
+  ggtitle('Average MIC per Bacteria')
 ```
-
-    ## Warning: ggrepel: 38 unlabeled data points (too many overlaps). Consider
-    ## increasing max.overlaps
 
 ![](c05-antibiotics-assignment_files/figure-gfm/q1.5-1.png)<!-- -->
 
@@ -391,10 +385,26 @@ opportunity to think about why this is.**
 > How do the three antibiotics vary in their effectiveness against
 > bacteria of different genera and Gram stain?
 
-*Observations* - What is your response to the question above? - (Write
-your response here) - Which of your visuals above (1 through 5) is
-**most effective** at helping to answer this question? - (Write your
-response here) - Why? - (Write your response here)
+*Observations* - What is your response to the question above? -
+
+Neomycin is the most effective drug overall with it being able to treat
+9 out of 16 types of negative and positive gram bacteria. Penicillin is
+effective against 6 types of bacteria, all positive gram. Streptomycin
+is effective against four types of bacteria, 3 being positive gram and 1
+being negative gram.
+
+Which of your visuals above (1 through 5) is **most effective** at
+helping to answer this question? -
+
+The first visual is the most effective at helping to answer this
+question.
+
+Why?
+
+The first visual shows the MIC levels of each drug plotted against each
+bacteria. You can see whether a drug meets the 0.1 MIC threshold of
+being able to treat the bacteria as shown by the dotted line. The color
+coding tells you whether the bacteria is gram positive or gram negative.
 
 #### Guiding Question 2
 
@@ -405,10 +415,25 @@ and in 1984 *Streptococcus fecalis* was renamed *Enterococcus fecalis*
 > Why was *Diplococcus pneumoniae* was renamed *Streptococcus
 > pneumoniae*?
 
-*Observations* - What is your response to the question above? - (Write
-your response here) - Which of your visuals above (1 through 5) is
-**most effective** at helping to answer this question? - (Write your
-response here) - Why? - (Write your response here)
+*Observations* - What is your response to the question above?
+
+*Diplococcus pneumoniae* was renamed *Streptococcus pneumoniae* because
+the bacteria MIC levels under each of the drugs is very similar to the
+other *Streptococcus* bacteria. For example, penicillin was the most
+effective drug to treat *Diplococcus pneumoniae* bacteria while the
+other two (neomycin and streptomycin) were equally uneffective. This is
+very similar to the behaviors of the *Streptococcus hemolytic and* the
+*Streptococcus viridans* bacteria*.*
+
+Which of your visuals above (1 through 5) is **most effective** at
+helping to answer this question?
+
+Visual 2.
+
+Why?
+
+Visual 2 splits the data up to compare each bacteria’s response to each
+drug so you can see the trends between bacteria and bacteria type.
 
 # References
 
