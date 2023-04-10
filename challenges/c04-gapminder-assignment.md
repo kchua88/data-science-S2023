@@ -143,9 +143,13 @@ glimpse(gapminder)
 
 ``` r
 ## TASK: Find the largest and smallest values of `year` in `gapminder`
-  
-year_max <- max(pull(gapminder, year))
-year_min <- min(pull(gapminder, year))
+
+year_max <- gapminder %>% 
+  pull(year) %>% 
+  max() 
+year_min <- gapminder %>% 
+  pull(year) %>% 
+  min() 
 
 year_max
 ```
@@ -240,6 +244,7 @@ gapminder %>%
   filter(year == year_min)  %>%
   select(continent, gdpPercap)   %>%
   ggplot(aes(x = continent, y = gdpPercap)) +
+  scale_y_log10()+
   geom_boxplot() +
   ggtitle("Continent vs. GDP per Capita in 1952")
 ```
@@ -304,11 +309,11 @@ gapminder %>%
 
   ggplot(aes(continent, lifeExp)) +
   geom_boxplot() +
+  scale_y_log10() +
   geom_point(
     data = . %>% filter(country %in% c("United Kingdom", "Japan", "Zambia")),
     mapping = aes(color = country),
-    size = 2
-  )
+    size = 2) 
 ```
 
 ![](c04-gapminder-assignment_files/figure-gfm/layer-filter-1.png)<!-- -->
@@ -326,12 +331,13 @@ gapminder %>%
 
   ggplot(aes(continent, gdpPercap)) +
   geom_boxplot() +
+  scale_y_log10()+
   geom_point(
     data = . %>% filter(country %in% c("Angola", "Bahrain", "Canada", "Gabon", "Kuwait", "South Africa", "Switzerland", "United States", "Venezuela")),
     mapping = aes(color = country),
     size = 2
   ) + 
-    ggtitle('Continent vs. GDP per capita in 1952')
+    ggtitle('Continent vs. GDP per capita in 1952') 
 ```
 
 ![](c04-gapminder-assignment_files/figure-gfm/q4-task-1.png)<!-- -->
@@ -367,21 +373,6 @@ gapminder %>%
     ## # Groups:   continent [0]
     ## # … with 6 variables: country <fct>, continent <fct>, year <int>,
     ## #   lifeExp <dbl>, pop <int>, gdpPercap <dbl>
-
-``` r
-gapminder %>%
-  filter(year == max(year)) %>%
-  ggplot(aes(continent, gdpPercap)) +
-  geom_boxplot() +
-  geom_point(
-    data = . %>% filter(country %in% c("Botswana", "Canada", "Equatorial Guinea", "Gabon", "Libya", "Mauritius", "South Africa", "United States")),
-    mapping = aes(color = country),
-    size = 2
-  ) +
-  ggtitle('Continent vs. GDP per capita in 2007')
-```
-
-![](c04-gapminder-assignment_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 **Observations**:
 

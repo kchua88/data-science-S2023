@@ -24,7 +24,7 @@ Unlike exercises, **challenges will be graded**. The following rubrics define ho
 <!-- ------------------------- -->
 
 | Category    | Needs Improvement                                                                                                | Satisfactory                                                                                                               |
-|------------------|--------------------------|----------------------------|
+|-------------|------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Effort      | Some task **q**'s left unattempted                                                                               | All task **q**'s attempted                                                                                                 |
 | Observed    | Did not document observations, or observations incorrect                                                         | Documented correct observations based on analysis                                                                          |
 | Supported   | Some observations not clearly supported by analysis                                                              | All observations clearly supported by analysis (table, graph, etc.)                                                        |
@@ -71,12 +71,18 @@ glimpse(gapminder)
 
 ```{r q1-task}
 ## TASK: Find the largest and smallest values of `year` in `gapminder`
-  
-year_max <- max(pull(gapminder, year))
-year_min <- min(pull(gapminder, year))
+
+year_max <- gapminder %>% 
+  pull(year) %>% 
+  max() 
+year_min <- gapminder %>% 
+  pull(year) %>% 
+  min() 
 
 year_max
 year_min
+
+
 ```
 
 Use the following test to check your work.
@@ -129,6 +135,7 @@ gapminder %>%
   filter(year == year_min)  %>%
   select(continent, gdpPercap)   %>%
   ggplot(aes(x = continent, y = gdpPercap)) +
+  scale_y_log10()+
   geom_boxplot() +
   ggtitle("Continent vs. GDP per Capita in 1952")
 
@@ -161,11 +168,12 @@ gapminder %>%
 
   ggplot(aes(continent, lifeExp)) +
   geom_boxplot() +
+  scale_y_log10() +
   geom_point(
     data = . %>% filter(country %in% c("United Kingdom", "Japan", "Zambia")),
     mapping = aes(color = country),
-    size = 2
-  )
+    size = 2) 
+  
 ```
 
 ### **q4** Create a plot similar to yours from q2 studying both `year_min` and `year_max`. Find a way to highlight the outliers from q3 on your plot *in a way that lets you identify which country is which*. Compare the patterns between `year_min` and `year_max`.
@@ -180,12 +188,13 @@ gapminder %>%
 
   ggplot(aes(continent, gdpPercap)) +
   geom_boxplot() +
+  scale_y_log10()+
   geom_point(
     data = . %>% filter(country %in% c("Angola", "Bahrain", "Canada", "Gabon", "Kuwait", "South Africa", "Switzerland", "United States", "Venezuela")),
     mapping = aes(color = country),
     size = 2
   ) + 
-    ggtitle('Continent vs. GDP per capita in 1952')
+    ggtitle('Continent vs. GDP per capita in 1952') 
 ```
 
 ```{r}
@@ -201,16 +210,6 @@ gapminder %>%
   filter(gdpPercap <= (quantile(gdpPercap, 0.25) - 1.5*IQR(gdpPercap))) 
 
 
-gapminder %>%
-  filter(year == max(year)) %>%
-  ggplot(aes(continent, gdpPercap)) +
-  geom_boxplot() +
-  geom_point(
-    data = . %>% filter(country %in% c("Botswana", "Canada", "Equatorial Guinea", "Gabon", "Libya", "Mauritius", "South Africa", "United States")),
-    mapping = aes(color = country),
-    size = 2
-  ) +
-  ggtitle('Continent vs. GDP per capita in 2007')
 ```
 
 **Observations**:
