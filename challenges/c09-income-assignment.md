@@ -583,7 +583,9 @@ and uncertainty.
 ``` r
 df_data %>%
   ggplot() +
-  geom_point(mapping = aes(x = population_estimate, y = income_SE)) +
+  geom_point(mapping = aes(x = population_estimate, y = income_SE), alpha=0.1) +
+  scale_y_log10() + 
+  scale_x_log10() +
   ggtitle("County population v.s Income Standard Error") + 
   labs(
     x = "Population",
@@ -601,13 +603,14 @@ df_data %>%
     we see. We see an exponential decay relationship where the higher
     the population, the rate of the decline of income SE increases.
     First of all, the equation for Standard Error is SE =
-    Standard_deviation/sqrt(n) with n = number of samples. With
-    population (n) increasing, the SE curve would take this shape. This
-    trend makes senses because we have more data in larger counties when
-    we calculate mean household income. More data means that we are able
-    to reduce uncertainty more in our calculation. If we have a
-    population with less people, there’s a higher chance that a few
-    outline data points would increase standard error.
+    Standard_deviation/sqrt(n) with n = number of samples. This is
+    assuming that the sample size is proportional to the population
+    size. With population (n) increasing, the SE curve would take this
+    shape if sample sizes are larger for larger populations. More data
+    means that we are able to reduce uncertainty more in our
+    calculation. If we have a population with less people, there’s a
+    higher chance that a few outline data points would increase standard
+    error.
 - What does this *overall* trend tell you about the relative ease of
   studying small vs large counties?
   - Because standard error is lower with counties with larger
