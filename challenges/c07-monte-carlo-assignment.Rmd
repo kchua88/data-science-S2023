@@ -115,8 +115,10 @@ df_generated <- tibble(
   y = runif(n, min = 0, max = 1))
 
 df_q1 <- df_generated %>%
-  mutate(stat = x^2 + y^2 <=1) %>%
-  summarize(pi_approximation = mean(stat)*4, standard_dev = sd(stat)*4)
+  mutate(
+    stat = (x^2 + y^2 <=1) * 4
+  ) %>%
+  summarize(pi_approximation = mean(stat), standard_dev = sd(stat))
 df_q1
  
 # Generate the data

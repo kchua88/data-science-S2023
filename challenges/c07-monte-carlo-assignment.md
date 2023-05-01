@@ -199,15 +199,17 @@ df_generated <- tibble(
   y = runif(n, min = 0, max = 1))
 
 df_q1 <- df_generated %>%
-  mutate(stat = x^2 + y^2 <=1) %>%
-  summarize(pi_approximation = mean(stat)*4, standard_dev = sd(stat)*4)
+  mutate(
+    stat = (x^2 + y^2 <=1) * 4
+  ) %>%
+  summarize(pi_approximation = mean(stat), standard_dev = sd(stat))
 df_q1
 ```
 
     ## # A tibble: 1 × 2
     ##   pi_approximation standard_dev
     ##              <dbl>        <dbl>
-    ## 1             3.28         1.54
+    ## 1             3.08         1.69
 
 ``` r
 # Generate the data
@@ -226,7 +228,7 @@ pi_est
     ## # A tibble: 1 × 1
     ##   pi_approximation
     ##              <dbl>
-    ## 1             3.28
+    ## 1             3.08
 
 # Quantifying Uncertainty
 
@@ -254,7 +256,7 @@ df_clt
     ## # A tibble: 1 × 5
     ##   pi_approximation standard_dev standard_error   low  high
     ##              <dbl>        <dbl>          <dbl> <dbl> <dbl>
-    ## 1             3.28         1.54         0.0487  3.18  3.37
+    ## 1             3.08         1.69         0.0533  2.97  3.18
 
 **Observations**:
 
