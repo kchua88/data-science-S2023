@@ -387,17 +387,14 @@ df_norm_pof
     ## # A tibble: 1 × 3
     ##   pof_lo pof_est pof_hi
     ##    <dbl>   <dbl>  <dbl>
-    ## 1 0.0121   0.021 0.0299
+    ## 1 0.0113    0.02 0.0287
 
 - Assuming your scopus is the probability of failure `POF` defined
   above, does your estimate exhibit real variability, induced
   variability, or both?
   - Induced variability- we can have induced variability from df_samples
-    due to there being a chance of manufacturing defects. Defects like
-    inclusions within the material would affect the material’s breaking
-    strength. Because we approximate the log normal distribution using
-    df_samples, there could be induced variability introduced into our
-    calculation.
+    due to there being limited strength data in the dataset which could
+    influence our POF estimate.
 - Does this confidence interval imply that `POF < 0.03`?
   - Yes, the 95% confidence interval only includes the POF below 0.03.
     The evidence suggests the true POF lies between 0.00976 and 0.0262
@@ -566,7 +563,7 @@ df_samples %>%
     ## # A tibble: 1 × 6
     ##   term   .lower .estimate .upper .alpha .method   
     ##   <chr>   <dbl>     <dbl>  <dbl>  <dbl> <chr>     
-    ## 1 pof   0.00110    0.0179 0.0482   0.05 percentile
+    ## 1 pof   0.00140    0.0177 0.0471   0.05 percentile
 
 **Observations**:
 
