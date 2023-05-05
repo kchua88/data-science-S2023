@@ -421,7 +421,7 @@ cor.test(both_SAT, univ_GPA)
 **Observations**:
 
 - Which correlations are significantly nonzero?
-  - both univ_GPA vs. high_GPA and univ_GPA vs. both_SAT are
+  - Both univ_GPA vs. high_GPA and univ_GPA vs. both_SAT are
     significantly nonzero because both their confidence intervals do not
     include 0.
 - Which of `high_GPA` and `both_SAT` seems to be more strongly
@@ -465,21 +465,21 @@ lower_ci
 ```
 
     ##      2.5% 
-    ## 0.6928201
+    ## 0.6987693
 
 ``` r
 upper_ci
 ```
 
-    ##    97.5% 
-    ## 0.848731
+    ##     97.5% 
+    ## 0.8517105
 
 ``` r
 est
 ```
 
-    ##     50% 
-    ## 0.78313
+    ##       50% 
+    ## 0.7847826
 
 **Observations**:
 
@@ -586,8 +586,8 @@ tibble(
 - What is the confidence interval on the coefficient of `both_SAT`? Is
   this coefficient significantly different from zero?
   - The confidence interval on the coefficient of both_SAT is from
-    0.001715376 to 0.003415381. The coefficient 0.002565378 is not much
-    different from 0.
+    0.001715376 to 0.003415381. The coefficient is statistically
+    significantly different from 0 because the interval excludes 0.
 - By itself, how well does `both_SAT` predict `univ_GPA`?
   - Since the coefficient is very close to 0, both_SAT is not a good
     predictor of univ_GPA.
@@ -643,10 +643,13 @@ tibble(
   significantly different from zero?
   - The confidence interval on the coefficient of both_SAT including
     high_GPA as a predictor is between 0.2989814792 to 0.842138715. The
-    coefficient of 0.5704600971 is significantly different from 0.
+    coefficient is statistically significantly different from 0 because
+    the confidence interval excludes 0.
 - How do the hypothesis test results compare with the results in q6?
   - The results from q7 show that high_GPA included as a predictor in
-    univ_GPA is a better fit.
+    univ_GPA is a better fit. The model error (mean squared error) is
+    also lower than the result in q6 when using just both_SAT as a
+    predictor for univ_GPA.
 
 ## Synthesize
 
